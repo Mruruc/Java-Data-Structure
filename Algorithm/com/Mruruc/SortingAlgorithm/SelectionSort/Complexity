@@ -1,0 +1,9 @@
+Time complexity: If the input array has n elements,
+the selectionSort method will take roughly n^2 iterations to sort the array.
+For example, if the input array has 10 elements, the method will take around 100 iterations to sort the array.
+As the size of the input array grows,
+the number of iterations will increase quadratically, making the method slower and slower.(O(n^2))
+
+Space complexity: The selectionSort method uses a constant amount of extra memory to store temporary variables,
+such as the indices of the maximum and last elements. Regardless of the size of the input array,
+the method will always use the same amount of memory, making its space complexity constant.(O(1))

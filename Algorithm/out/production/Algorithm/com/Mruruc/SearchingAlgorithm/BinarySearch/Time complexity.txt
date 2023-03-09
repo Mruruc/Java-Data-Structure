@@ -1,0 +1,15 @@
+Time complexity In Binary Search:
+
+ The time complexity of Binary Search for a 1D array with n elements is O(log n) in the base 2.
+ This means that the number of comparisons required to find the target
+ element is proportional to the logarithm of the number of elements in the array.
+
+ For a 2D array with m rows and n columns, the number of elements in the array is m * n.
+ However, Binary Search only works for sorted 1D arrays, so it cannot be applied directly to a 2D array.
+
+ If the 2D array is sorted row-wise or column-wise,
+ we can use Binary Search to search each row or column separately.
+ For example, to search for an element in a row-wise sorted 2D array,
+ we can perform Binary Search on each row until we find the target element or exhaust all rows.
+ The worst-case time complexity of this approach is O(m * log n),
+ where m is the number of rows and n is the number of columns.

@@ -1,0 +1,4 @@
+Time complexity:
+
+---->> is n ---> n is the number of compression.
+---->> n is number of element.
