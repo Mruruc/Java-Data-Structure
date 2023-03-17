@@ -2,7 +2,7 @@ package ArrayList;
 
 public class CustomArrayList{
     private int[] arr;
-    private static final int DEFAULT_SIZE=10;
+    private static  int DEFAULT_SIZE=10;
     private int size=0;
 
     public CustomArrayList() {
