@@ -1,87 +1,70 @@
-package com.mruruc.Queue_With_Array;
+package com.mruruc.queue_with_array;
 
-public class DynamicQueue<T>{
-    private T[] arr;
-    private final int DEFAULT_SIZE=10;
-    private int front;
-    private int rear;
+public class DynamicQueue<T> {
+
+    private T[] queue;
     private int counter;
+    private int DEFAULT_SIZE = 10;
 
-    public DynamicQueue(){
-        this.arr= (T[]) new Object[DEFAULT_SIZE];
-        this.front=0;
-        this.rear=0;
-        this.counter=0;
-    }
-    public  DynamicQueue(int size){
-        this.arr=(T[])new Object[size];
-        this.front=0;
-        this.rear=0;
-        this.counter=0;
+    @SuppressWarnings("unchecked")
+    public DynamicQueue() {
+        this.queue = (T[]) new Object[DEFAULT_SIZE];
+        this.counter = 0;
     }
 
-    public void  enqueue(T data){
-        if(isFull()){
-          resize();
-        }
-        arr[rear]=data;
-        rear=(rear+1)% arr.length;
+    @SuppressWarnings("unchecked")
+    public DynamicQueue(int size) {
+        this.queue = (T[]) new Object[size];
+        this.counter = 0;
+    }
+
+    public void enqueue(T data) {
+        if (counter == queue.length) resize();
+        queue[counter] = data;
         counter++;
     }
 
-    private void resize() {
-        T[] temp=(T[]) new Object[arr.length*2];
-        for (int i = 0; i <counter; i++) {
-            temp[i]=arr[(front+i)% arr.length];
-
-        }
-        front=0;
-        rear= arr.length;
-        arr=temp;
-
+    public T peek() {
+        if (isEmpty()) throw new IllegalStateException("Queue is empty!");
+        return queue[0];
     }
 
-    public T deQueue(){
-        if(isEmpty()){
-            throw new IllegalStateException("Queue is Empty!");
+    public T dequeue() {
+        if (isEmpty()) throw new IllegalStateException("Queue is empty!");
+        T removedElement = queue[0];
+        // shift element in queue
+        for (int i = 1; i < counter; i++) {
+            queue[i - 1] = queue[i];
         }
-       T removed=arr[front];
-        arr[front]=null;
-        front++;
         counter--;
-        return removed;
+        return removedElement;
     }
 
-    public T peek(){
-        return arr[front];
+    @SuppressWarnings("unchecked")
+    private void resize() {
+        T[] temp = (T[]) new Object[queue.length * 2];
+        System.arraycopy(queue,0,temp,0,queue.length);
+        queue = temp;
     }
 
-
-    public int size(){
+    public int size() {
         return this.counter;
     }
-    public boolean isFull() {
-        return counter==arr.length;
+
+    public boolean isEmpty() {
+        return this.counter == 0;
     }
 
-    public boolean isEmpty(){
-        return counter==0;
-    }
 
-    public void print(){
-        if(isEmpty()){
-            throw new IllegalStateException("Queue is Empty!");
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < counter; i++) {
+            builder.append(queue[i]).append(", ");
         }
-        int i=front;
-        do{
-            System.out.print(arr[i]+" ");
-
-            i=(i+1) % arr.length;
-        }
-        while(i!=rear);
-
-        System.out.println();
+        return "Queue[" + builder.toString() + "]";
     }
+
 
 }
 
